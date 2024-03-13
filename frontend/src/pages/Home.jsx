@@ -1,86 +1,110 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
-import { AiOutlineEdit } from "react-icons/ai";
-import { BsInfoCircle } from "react-icons/bs";
-import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
+import "../App.css";
+import { GiCat } from "react-icons/gi";
 
 const Home = () => {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get("http://localhost:5555/books")
-      .then((response) => {
-        setBooks(response.data.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   return (
-    <div className="p-4">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl my-8">Books List</h1>
-        <Link to="/books/create">
-          <MdOutlineAddBox className="text-sky-800 text-4xl" />
-        </Link>
-      </div>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <table className="w-full border-separate border-spacing-2">
-          <thead>
-            <tr>
-              <th className="border border-slate-600 rounded-md">No</th>
-              <th className="border border-slate-600 rounded-md">Title</th>
-              <th className="border border-slate-600 rounded-md max-md:hidden">
-                Author
-              </th>
-              <th className="border border-slate-600 rounded-md max-md:hidden">
-                Publish Year
-              </th>
-              <th className="border border-slate-600 rounded-md">Operations</th>
-            </tr>
-          </thead>
-          <tbody>
-            {books.map((book, index) => (
-              <tr key={book._id} className="h-8">
-                <td className="border border-slate-700 rounded-md text-center">
-                  {index + 1}
-                </td>
-                <td className="border border-slate-700 rounded-md text-center">
-                  {book.title}
-                </td>
-                <td className="border border-slate-700 rounded-md text-center max-md:hidden">
-                  {book.author}
-                </td>
-                <td className="border border-slate-700 rounded-md text-center max-md:hidden">
-                  {book.publishYear}
-                </td>
-                <td className="border border-slate-700 rounded-md text-center ">
-                  <div className="flex justify-center gap-x-4">
-                    <Link to={`/books/details/${book._id}`}>
-                      <BsInfoCircle className="text-2xl text-green-800" />
-                    </Link>
-                    <Link to={`/books/edit/${book._id}`}>
-                      <AiOutlineEdit className="text-2xl text-yellow-800" />
-                    </Link>
-                    <Link to={`/books/delete/${book._id}`}>
-                      <MdOutlineDelete className="text-2xl text-red-800" />
-                    </Link>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+    <div>
+      <body>
+        <div className="homeHeader">
+          <div>Learn Russian</div>
+          <div className="homeBanner">
+            <div id="logo">
+              <GiCat />
+            </div>
+            <div id="title">Хорошего дня</div>
+            <div id="subtitle">russian language learning</div>
+          </div>
+          <div>
+            <nav>
+              <Link to="/">Home</Link>
+              <Link to="/quiz">Quiz</Link>
+              <Link to="/review">Review</Link>
+              <Link to="/signin">Sign in</Link>
+            </nav>
+          </div>
+        </div>
+        <div className="homeMain">
+          <div className="subscribeSection">
+            <div id="resultSubscribe"></div>
+            <h3>Subscribe to receive daily vocab word emails.</h3>
+            <form>
+              <select id="level" name="level" required>
+                <option value="" disabled selected hidden>
+                  Choose a level
+                </option>
+                <option value="1">Level 1</option>
+                <option value="2">Level 2</option>
+                <option value="3">Level 3</option>
+                <option value="4">Level 4</option>
+              </select>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email address"
+                required
+              />
+              <input id="subscribeBtn" type="submit" value="Subscribe" />
+            </form>
+          </div>
+          <div className="levelSection">
+            <h2>Which level are you?</h2>
+            <p>
+              Click on each level below to see sample words, or check out recent
+              daily words.
+            </p>
+            <div className="levelContainer">
+              <div className="btnContainer">
+                <button className="level_btn" autoFocus>
+                  Level 1
+                </button>
+                <button className="level_btn">Level 2</button>
+                <button className="level_btn">Level 3</button>
+                <button className="level_btn">Level 4</button>
+              </div>
+              <div className="cardContainer">
+                <div className="card">
+                  <p>вы</p>
+                  <p>you</p>
+                  <p>pronoun</p>
+                </div>
+                <div className="card">
+                  <p>знать</p>
+                  <p>to know, be aware</p>
+                  <p>verb</p>
+                </div>
+                <div className="card">
+                  <p>сказать</p>
+                  <p>to say, to speak</p>
+                  <p>verb</p>
+                </div>
+                <div className="card">
+                  <p>большой</p>
+                  <p>big, large, important</p>
+                  <p>adjective</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="introSection">
+            <h2>Frequently Asked Questions</h2>
+            <p>What am I subscribing to?</p>
+            <p>
+              Select your Russian level and subscribe to receive daily emails
+              with vocabulary words at this level.
+            </p>
+            <br />
+            <p>What does Хорошего дня mean?</p>
+            <p>Have a wonderful day: Study hard and make progress every day.</p>
+          </div>
+        </div>
+        <footer>
+          <div>
+            <span>Хорошего дня</span>
+          </div>
+        </footer>
+      </body>
     </div>
   );
 };
