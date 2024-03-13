@@ -1,6 +1,7 @@
 import "../App.css";
 import { Link } from "react-router-dom";
 import { GiCat } from "react-icons/gi";
+import { FaPen } from "react-icons/fa";
 
 const QuizPage = () => {
   return (
@@ -30,7 +31,7 @@ const QuizPage = () => {
         <div className="editQuizSection">
           <span id="quizFilter">Level 1, past 30 days</span>
           <span>
-            <i className="far fa-edit"></i>
+            <FaPen />
           </span>
         </div>
         <div id="progress_container">
