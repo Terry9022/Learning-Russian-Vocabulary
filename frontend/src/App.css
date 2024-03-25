@@ -243,6 +243,7 @@ footer span {
 
 /* Main content rule */
 .homeMain {
+  min-height: 74vh;
   max-width: 900px;
   width: 100%;
   margin-left: auto;
@@ -414,6 +415,7 @@ footer span {
 
 /* Main content rule */
 .quizMain {
+  min-height: 74vh;
   max-width: 900px;
   width: 100%;
   margin-left: auto;
@@ -475,7 +477,6 @@ footer span {
 .quizSection {
   padding: 1.5rem 2rem;
   line-height: 2rem;
-  min-height: 400px;
 }
 
 .question {
@@ -555,6 +556,7 @@ footer span {
 
 /* Main content rule */
 .reviewMain {
+  min-height: 74vh;
   max-width: 900px;
   width: 100%;
   margin-left: auto;
@@ -647,6 +649,7 @@ footer span {
 /* CSS for Signin Page */
 /* Main content rule */
 .signinMain {
+  min-height: 74vh;
   max-width: 900px;
   width: 100%;
   margin-left: auto;

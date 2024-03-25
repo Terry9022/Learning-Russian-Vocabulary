@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import QuizPage from "./pages/QuizPage";
 import ReviewPage from "./pages/ReviewPage";
 import SigninPage from "./pages/SigninPage";
+import "./index.css";
 
 export const App = () => {
   return (
