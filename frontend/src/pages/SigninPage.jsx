@@ -4,7 +4,7 @@ import { GiCat } from "react-icons/gi";
 const SigninPage = () => {
   return (
     <div>
-      <body>
+      <div className="body">
         <div className="quizHeader">
           <div>Learn Russian</div>
           <div className="quizBanner">
@@ -55,7 +55,7 @@ const SigninPage = () => {
             <span>Хорошего дня</span>
           </div>
         </footer>
-      </body>
+      </div>
     </div>
   );
 };

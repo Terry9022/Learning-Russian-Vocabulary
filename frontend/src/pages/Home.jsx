@@ -5,7 +5,7 @@ import { GiCat } from "react-icons/gi";
 const Home = () => {
   return (
     <div>
-      <body>
+      <div className="body">
         <div className="homeHeader">
           <div>Learn Russian</div>
           <div className="homeBanner">
@@ -104,7 +104,7 @@ const Home = () => {
             <span>Хорошего дня</span>
           </div>
         </footer>
-      </body>
+      </div>
     </div>
   );
 };

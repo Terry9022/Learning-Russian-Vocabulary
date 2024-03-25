@@ -6,7 +6,7 @@ import { FaPen } from "react-icons/fa";
 const QuizPage = () => {
   return (
     <div>
-      <body>
+      <div className="body">
         <div className="quizHeader">
           <div>Learn Russian</div>
           <div className="quizBanner">
@@ -68,7 +68,7 @@ const QuizPage = () => {
             <span>Хорошего дня</span>
           </div>
         </footer>
-      </body>
+      </div>
     </div>
   );
 };
