@@ -1,4 +1,3 @@
-import "../App.css";
 import { Link } from "react-router-dom";
 import { GiCat } from "react-icons/gi";
 import { FaPen } from "react-icons/fa";
