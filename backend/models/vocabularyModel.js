@@ -28,4 +28,4 @@ const vocabularySchema = mongoose.Schema(
   }
 );
 
-export const Vocabulary = mongoose.model("Vocabulary", vocabularySchema);
+export const Vocabulary = mongoose.model("Vocabulary", vocabularySchema, "Vocabulary");
