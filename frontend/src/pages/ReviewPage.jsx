@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
-import { Link } from "react-router-dom";
-import { GiCat } from "react-icons/gi";
 import VocabularyCard from "../components/VocabularyCard";
+import Header from "../components/Header";
 
 // const vocabulary = {
 //   russian_word: "вы",
@@ -35,27 +34,7 @@ const ReviewPage = () => {
   return (
     <div>
       <div className="body">
-        <div className="quizHeader">
-          <div>Learn Russian</div>
-          <div className="quizBanner">
-            <div id="quizLogo">
-              <GiCat />
-            </div>
-            <div className="menuIconContainer">
-              <div className="menuIcon"></div>
-              <div className="menuIcon"></div>
-              <div className="menuIcon"></div>
-            </div>
-          </div>
-          <div>
-            <nav>
-              <Link to="/">Home</Link>
-              <Link to="/quiz">Quiz</Link>
-              <Link to="/review">Review</Link>
-              <Link to="/signin">Sign in</Link>
-            </nav>
-          </div>
-        </div>
+        <Header />
         <div className="reviewMain">
           <div className="reviewFormSection">
             <span id="reviewCaption">Review daily words</span>
