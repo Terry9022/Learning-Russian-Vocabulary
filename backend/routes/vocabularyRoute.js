@@ -1,7 +1,10 @@
 import express from "express";
 import { Vocabulary } from "../models/vocabularyModel.js";
+import request from "request"; 
+
 
 const router = express.Router();
+
 
 // Route for get All vocabulary from database
 router.get("/", async (req, res) => {
@@ -56,5 +59,31 @@ router.get("/", async (req, res) => {
       res.status(500).send({ message: error.message });
     }
   });
+
+  // add sentences to all words (no longer needed)
+  /*router.get("/sentences/:sentences", async(req,res) => {
+    
+    const vocab = await Vocabulary.find({});
+    //console.log(vocab);
+    var updates = 0;
+    for(var i = 0; i < vocab.length; i++){
+
+      if(vocab[i].example_sentence == ""){
+        var english = vocab[i].english_word.split(';');
+
+        english = english[0]
+        english.substring(1);
+        console.log(english);
+        var myquery = { _id : vocab[i]._id };
+        var newvalues = { example_sentence : "https://dictionary.cambridge.org/us/dictionary/english-russian/" + english};
+        const result = await Vocabulary.updateOne(myquery, newvalues);
+        updates++;
+        console.log(result);
+
+       
+      }
+    }
+    return res.status(200).json({updates : updates});
+  });*/
 
   export default router;
