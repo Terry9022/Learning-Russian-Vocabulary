@@ -1,7 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GiCat } from "react-icons/gi";
+import { useState } from "react";
+import axios from "axios";
 
 const Home = () => {
+  const navigateTo = useNavigate();
+  const user = localStorage.getItem("userId");
+
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    navigateTo("/");
+  };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [level, setLevel] = useState("1");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5555/api/user/create", {
+        name,
+        email,
+        password,
+        level,
+      });
+      alert("User registered successfully");
+
+      navigateTo("/signin");
+    } catch (error) {
+      console.error(error);
+      alert("Error registering user");
+    }
+  };
+
   return (
     <div>
       <div className="body">
@@ -19,16 +52,24 @@ const Home = () => {
               <Link to="/">Home</Link>
               <Link to="/quiz">Quiz</Link>
               <Link to="/review">Review</Link>
-              <Link to="/signin">Sign in</Link>
+              {!user && <Link to="/signin">Sign in</Link>}
+              {user && <Link to="/profile">Profile</Link>}
+              {user && <Link onClick={handleSignOut}>Sign out</Link>}
             </nav>
           </div>
         </div>
         <div className="homeMain">
           <div className="subscribeSection">
             <div id="resultSubscribe"></div>
-            <h3>Subscribe to receive daily vocab word emails.</h3>
-            <form>
-              <select id="level" name="level" required>
+            <h3>Sign up to subscribe to receive daily vocab word emails.</h3>
+            <form onSubmit={handleSubmit}>
+              <select
+                id="level"
+                name="level"
+                value={level}
+                onChange={(e) => setLevel(e.target.value)}
+                required
+              >
                 <option value="" disabled selected hidden>
                   Choose a level
                 </option>
@@ -41,10 +82,23 @@ const Home = () => {
                 type="email"
                 id="email"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email address"
                 required
               />
-              <input id="subscribeBtn" type="submit" value="Subscribe" />
+
+              <input
+                type="password"
+                id="password"
+                placeholder="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md"
+                required
+              />
+
+              <input id="subscribeBtn" type="submit" value="Sign up" />
             </form>
           </div>
           <div className="levelSection">
