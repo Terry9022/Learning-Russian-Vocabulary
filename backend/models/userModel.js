@@ -34,7 +34,7 @@ const userSchema = mongoose.Schema(
     },
     level: {
       type: String,
-      required: false,
+      required: true,
     },
     vocabulary_received: [
       {

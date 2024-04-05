@@ -282,6 +282,20 @@ footer span {
   box-sizing: border-box;
 }
 
+.subscribeSection input[type="password"] {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #495057;
+  vertical-align: middle;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  margin-right: 0;
+  height: 34px;
+  width: 36rem;
+  box-sizing: border-box;
+}
+
 #subscribeBtn {
   padding: 0.375rem 0.75rem 0.375rem 0.75rem;
   font-size: 1rem;
@@ -679,6 +693,21 @@ footer span {
   display: block;
 }
 
+.signinSection input[type="password"] {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  margin-right: 0;
+  margin-top: 0.75rem;
+  height: 34px;
+  width: 30rem;
+  box-sizing: border-box;
+  display: block;
+}
+
 #signinBtn {
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
@@ -760,7 +789,8 @@ footer span {
     padding: 0.375rem 1rem 0.375rem 0.75rem;
   }
 
-  .subscribeSection input[type="email"] {
+  .subscribeSection input[type="email"],
+  .subscribeSection input[type="password"] {
     width: 12rem;
   }
 
@@ -800,7 +830,8 @@ footer span {
     font-size: 0.8rem;
   }
 
-  .subscribeSection input[type="email"] {
+  .subscribeSection input[type="email"],
+  .subscribeSection input[type="password"] {
     width: 8rem;
     font-size: 0.9rem;
   }
@@ -833,7 +864,8 @@ footer span {
     font-size: 1rem;
   }
 
-  .signinSection input[type="email"] {
+  .signinSection input[type="email"],
+  .signinSection input[type="password"] {
     width: 24rem;
   }
   #signinToHome {
@@ -884,7 +916,8 @@ footer span {
     font-size: 0.9rem;
   }
 
-  .signinSection input[type="email"] {
+  .signinSection input[type="email"],
+  .signinSection input[type="password"] {
     width: 16rem;
   }
 }

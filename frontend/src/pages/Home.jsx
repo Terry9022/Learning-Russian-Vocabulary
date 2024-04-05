@@ -87,14 +87,13 @@ const Home = () => {
                 placeholder="Email address"
                 required
               />
-
+              <div className="h-[10px]"></div>
               <input
                 type="password"
                 id="password"
-                placeholder="password"
+                placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2 border rounded-md"
                 required
               />
 

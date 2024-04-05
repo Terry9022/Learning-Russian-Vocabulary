@@ -56,7 +56,7 @@ const SigninPage = () => {
                 type="password"
                 id="password"
                 value={password}
-                placeholder="password"
+                placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-3 py-2 border rounded-md"
                 required

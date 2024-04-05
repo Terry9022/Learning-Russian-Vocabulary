@@ -67,7 +67,7 @@ function Profile() {
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-3 py-2 border rounded-md"
+                className="text-base font-normal text-gray-700 rounded h-10 w-80 box-border block border-2 border-solid border-gray-300 px-2"
               />
             </div>
             <div className="mb-4">
@@ -79,7 +79,7 @@ function Profile() {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2 border rounded-md"
+                className="text-base font-normal text-gray-700 rounded h-10 w-80 box-border block border-2 border-solid border-gray-300 px-2"
                 required
               />
             </div>
@@ -91,7 +91,7 @@ function Profile() {
                 id="level"
                 value={level}
                 onChange={(e) => setLevel(e.target.value)}
-                className="w-full px-3 py-2 border rounded-md"
+                className="text-base font-normal text-gray-700 rounded h-10 w-80 box-border block border-2 border-solid border-gray-300 px-2"
                 required
               >
                 <option value="1">1</option>
@@ -101,7 +101,7 @@ function Profile() {
             </div>
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
+              className="bg-slate-400 text-white px-4 py-2 rounded-md hover:bg-red-700"
             >
               Update
             </button>
