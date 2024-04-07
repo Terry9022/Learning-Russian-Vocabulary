@@ -5,7 +5,16 @@ const QuizPage = () => {
   return (
     <div>
       <div className="body">
-        <Header />
+        <div>
+        <nav>
+              <Link to="/">Home</Link>
+              <Link to="/quiz">Quiz</Link>
+              <Link to="/review">Review</Link>
+              {!user && <Link to="/signin">Sign in</Link>}
+              {user && <Link to="/profile">Profile</Link>}
+              {user && <Link onClick={handleSignOut}>Sign out</Link>}
+          </nav>
+        </div>
         <div className="quizMain">
           <div className="editQuizSection">
             <span id="quizFilter">Level 1, past 30 days</span>

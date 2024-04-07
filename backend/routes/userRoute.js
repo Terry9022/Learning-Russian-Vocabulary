@@ -1,5 +1,6 @@
 import express from "express";
 import { User } from "../models/userModel.js";
+import { Vocabulary } from "../models/vocabularyModel.js";
 import bcrypt from "bcrypt";
 
 const router = express.Router();
@@ -24,9 +25,10 @@ router.get("/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const user = await User.findById(userId);
-
+    console.log(user);
     return res.status(200).json(user);
   } catch (error) {
+    console.log(error.message);
     console.log(error.message);
     res.status(500).send({ message: error.message });
   }
@@ -59,6 +61,7 @@ router.post("/create", async (req, res) => {
     res.status(201).json(savedUser);
   } catch (error) {
     console.error(error);
+    console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
@@ -83,6 +86,43 @@ router.put("/update/:userId", async (req, res) => {
 
     // Save the updated user
     const updatedUser = await user.save();
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+//add Word to user
+router.get("/add_word/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    //const { name, email, level } = req.body;
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Get Vocabulary Word
+    // sample word
+    const vocab = await Vocabulary.findById("65ef922e489ba7a0db217855");
+    console.log(vocab);
+
+    // Save the updated user
+    const updatedUser = await User.updateOne(
+      { _id: userId },
+      { $push: { vocabulary_received : { 
+        russian_word : vocab.russian_word,
+        english_word : vocab.english_word,
+        example_sentence : vocab.example_sentence,
+        difficulty_level : vocab.difficulty_level
+      } } }
+   );
+    //const updatedUser = await user.save();
 
     res.json(updatedUser);
   } catch (error) {
