@@ -26,9 +26,45 @@ const ReviewPage = () => {
 
   const navigateTo = useNavigate();
 
-  const chooseReview = (value) => {
-    console.log(value.target.value);
-    //alert(value.target);
+  const chooseReview = async (value) => {
+    const response = await axios.get(
+      `http://localhost:5555/api/user/${localStorage.getItem("userId")}`
+    );
+    var user_vocab = response.data.vocabulary_received;
+    var level_vocab = [];
+    if(value.target.value != "all" && value.target.value < "30"){
+      // level selection
+
+      // get vocab for selected level
+      for(var i = 0; i < user_vocab.length; i++){
+        if(user_vocab[i].difficulty_level == value.target.value){
+          level_vocab.push(user_vocab[i]);
+        }
+      }
+      setVocabularies(level_vocab);
+    }else if(value.target.value != "all"){ // time selection
+      
+      var current = new Date();
+
+      for(var i = 0; i < user_vocab.length; i++){
+
+        var vocabdate = new Date(user_vocab[i].timestamp);
+        var datesub = (current.getTime() - vocabdate.getTime())/ (1000 * 3600 * 24);
+        
+        if(datesub <= parseInt(value.target.value)){
+          level_vocab.push(user_vocab[i]);
+        }
+      }
+      setVocabularies(level_vocab);
+    }else{//all selected
+      const response = await axios.get(
+        `http://localhost:5555/api/user/${userId}`
+      );
+      const userData = response.data;
+      setVocabularies(userData.vocabulary_received);
+
+    }
+    
   };
 
   const handleSignOut = () => {
@@ -50,6 +86,7 @@ const ReviewPage = () => {
         setName(userData.name);
         setEmail(userData.email);
         setLevel(userData.level);
+        setVocabularies(userData.vocabulary_received);
       } catch (error) {
         console.error(error);
         alert("Error fetching user profile");
@@ -102,7 +139,7 @@ const ReviewPage = () => {
               {level >= "5" && <option id="level5" value="5">Level 5</option>}
               {level >= "6" && <option id="level6" value="6">Level 6</option>}
             </select>
-            <select id="timeRange" name="timeRange">
+            <select id="timeRange" name="timeRange" onChange={chooseReview}>
               <option id="past30Days" value="30">Past 30 days</option>
               <option id="past60Days" value="60">Past 60 days</option>
               <option id="past90Days" value="90">Past 90 days</option>
@@ -118,7 +155,7 @@ const ReviewPage = () => {
                 {vocabularies.map((vocabulary) => (
                   <VocabularyCard
                     vocabulary={vocabulary}
-                    key={vocabulary._id}
+                    key={vocabulary.russian_word}
                   />
                 ))}
               </>

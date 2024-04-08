@@ -21,7 +21,7 @@ function VocabularyCard({ vocabulary }) {
           Level {vocabulary.difficulty_level}
         </span>
         <span className="cardInfoTime">
-          {new Date(vocabulary.updatedAt).toISOString().split("T")[0]}
+          {new Date(vocabulary.timestamp).toISOString().split("T")[0]}
         </span>
       </div>
     </div>
