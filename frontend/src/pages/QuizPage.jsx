@@ -13,12 +13,6 @@ const QuizPage = () => {
   const [name, setName] = useState([]);
   const [email, setEmail] = useState([]);
 
-  const navigateTo = useNavigate();
-  const handleSignOut = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    navigateTo("/");
-  };
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -40,24 +34,13 @@ const QuizPage = () => {
       }
     };
 
-  fetchUserProfile();
-}, []);
+    fetchUserProfile();
+  }, []);
 
   return (
     <div>
       <div className="body">
-        <div>
-        <nav>
-              <Link to="/">Home</Link>
-              {!user && <Link to="/signin">Quiz</Link>}
-              {!user && <Link to="/signin">Review</Link>}
-              {!user && <Link to="/signin">Sign in</Link>}
-              {user && <Link to="/quiz">Quiz</Link>}
-              {user && <Link to="/review">Review</Link>}
-              {user && <Link to="/profile">Profile</Link>}
-              {user && <Link onClick={handleSignOut}>Sign out</Link>}
-          </nav>
-        </div>
+        <Header />
         <div className="quizMain">
           <div className="editQuizSection">
             <span id="quizFilter">Level 1, past 30 days</span>

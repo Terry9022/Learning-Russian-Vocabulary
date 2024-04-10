@@ -50,11 +50,9 @@ const Home = () => {
           <div>
             <nav>
               <Link to="/">Home</Link>
-              {!user && <Link to="/signin">Quiz</Link>}
-              {!user && <Link to="/signin">Review</Link>}
+              <Link to="/quiz">Quiz</Link>
+              <Link to="/review">Review</Link>
               {!user && <Link to="/signin">Sign in</Link>}
-              {user && <Link to="/quiz">Quiz</Link>}
-              {user && <Link to="/review">Review</Link>}
               {user && <Link to="/profile">Profile</Link>}
               {user && <Link onClick={handleSignOut}>Sign out</Link>}
             </nav>
