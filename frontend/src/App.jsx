@@ -4,6 +4,7 @@ import QuizPage from "./pages/QuizPage";
 import ReviewPage from "./pages/ReviewPage";
 import SigninPage from "./pages/SigninPage";
 import ReviewAllPage from "./pages/ReviewAllPage";
+import QuizDemoPage from "./pages/QuizDemoPage";
 
 import Profile from "./pages/Profile";
 
@@ -15,6 +16,7 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/quiz" element={<QuizPage />} />
+      <Route path="/quiz-demo" element={<QuizDemoPage />} />
       <Route path="/review" element={<ReviewPage />} />
       <Route path="/review-all" element={<ReviewAllPage />} />
       <Route path="/signin" element={<SigninPage />} />

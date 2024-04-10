@@ -28,7 +28,11 @@ function Header() {
       <div>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/quiz">Quiz</Link>
+          {user ? (
+            <Link to="/quiz">Quiz</Link>
+          ) : (
+            <Link to="/quiz-demo">Quiz</Link>
+          )}
           {user ? (
             <Link to="/review">Review</Link>
           ) : (
