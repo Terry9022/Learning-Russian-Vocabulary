@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import QuizPage from "./pages/QuizPage";
 import ReviewPage from "./pages/ReviewPage";
 import SigninPage from "./pages/SigninPage";
+import ReviewAllPage from "./pages/ReviewAllPage";
 
 import Profile from "./pages/Profile";
 
@@ -15,6 +16,7 @@ export const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/quiz" element={<QuizPage />} />
       <Route path="/review" element={<ReviewPage />} />
+      <Route path="/review-all" element={<ReviewAllPage />} />
       <Route path="/signin" element={<SigninPage />} />
       <Route path="/profile" element={<Profile />} />
     </Routes>

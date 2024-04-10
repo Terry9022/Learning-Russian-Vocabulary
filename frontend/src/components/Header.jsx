@@ -29,7 +29,11 @@ function Header() {
         <nav>
           <Link to="/">Home</Link>
           <Link to="/quiz">Quiz</Link>
-          <Link to="/review">Review</Link>
+          {user ? (
+            <Link to="/review">Review</Link>
+          ) : (
+            <Link to="/review-all">Review</Link>
+          )}
           {!user && <Link to="/signin">Sign in</Link>}
           {user && <Link to="/profile">Profile</Link>}
           {user && <Link onClick={handleSignOut}>Sign out</Link>}
