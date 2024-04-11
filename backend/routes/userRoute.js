@@ -109,17 +109,27 @@ router.get("/add_word/:userId", async (req, res) => {
 
     // Get Vocabulary Word
     // sample word
-    const vocab = await Vocabulary.findById("65ef922e489ba7a0db217855");
-    console.log(vocab);
-
+    const vocab = await Vocabulary.find({"difficulty_level" : user.level});
+    var word = vocab[Math.floor(Math.random() * (vocab.length-1 - 0 + 1))];
+    var inc = true;
+    while(inc){
+      inc = false;
+      for(var i = 0; i < user.vocabulary_received.length; i++){
+        if(user.vocabulary_received[i].russian_word == word.russian_word){
+          inc = true;
+          word = vocab[Math.floor(Math.random() * (vocab.length-1 - 0 + 1))];
+          i = user.vocabulary_received.length;
+        }
+      }
+    }
     // Save the updated user
     const updatedUser = await User.updateOne(
       { _id: userId },
       { $push: { vocabulary_received : { 
-        russian_word : vocab.russian_word,
-        english_word : vocab.english_word,
-        example_sentence : vocab.example_sentence,
-        difficulty_level : vocab.difficulty_level
+        russian_word : word.russian_word,
+        english_word : word.english_word,
+        example_sentence : word.example_sentence,
+        difficulty_level : word.difficulty_level
       } } }
    );
     //const updatedUser = await user.save();
@@ -128,6 +138,47 @@ router.get("/add_word/:userId", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+router.get("/add/all_users", async (req, res) => {
+  try {
+    const all_users = await User.find({});
+    var updated = 0;
+    
+    for(var j = 0; j < all_users.length; j++){
+      var user = all_users[j]
+      const vocab = await Vocabulary.find({"difficulty_level" : user.level});
+      var word = vocab[Math.floor(Math.random() * (vocab.length-1 - 0 + 1))];
+      var inc = true;
+      while(inc){
+        inc = false;
+        for(var i = 0; i < user.vocabulary_received.length; i++){
+          if(user.vocabulary_received[i].russian_word == word.russian_word){
+            inc = true;
+            word = vocab[Math.floor(Math.random() * (vocab.length-1 - 0 + 1))];
+            i = user.vocabulary_received.length;
+          }
+        }
+      }
+      // Save the updated user
+      const updatedUser = await User.updateOne(
+        { _id: user._id },
+        { $push: { vocabulary_received : { 
+          russian_word : word.russian_word,
+          english_word : word.english_word,
+          example_sentence : word.example_sentence,
+          difficulty_level : word.difficulty_level
+        } } });
+      updated ++;
+    }
+
+    return res.status(200).json({
+      count: updated
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
   }
 });
 
