@@ -47,6 +47,22 @@ function Profile() {
     }
   };
 
+  const handleAddWord = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const response = await axios.get(
+        `http://localhost:5555/api/user/add_word/${userId}`
+      );
+      const updatedUser = response.data;
+      console.log(updatedUser);
+      console.log(updatedUser.vocabulary_received);
+      alert("Word added successfully");
+    } catch (error) {
+      console.error(error);
+      alert("Error adding word");
+    }
+  };
+
   if (!user) {
     return <div>Loading...</div>;
   }
@@ -106,6 +122,12 @@ function Profile() {
               Update
             </button>
           </form>
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 hover:bg-red-700"
+            onClick={handleAddWord}
+          >
+            Add Word
+          </button>
         </div>
       </div>
       <footer>
