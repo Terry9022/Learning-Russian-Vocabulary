@@ -26,6 +26,7 @@ app.get("/", (req, res) => {
 app.use("/books", booksRoute);
 app.use("/api/vocabulary", vocabularyRoute);
 app.use("/api/user", userRoute);
+app.use("/api/email", emailRoute);
 
 // User login route
 app.post("/api/login", async (req, res) => {
