@@ -123,7 +123,7 @@ function Profile() {
             </button>
           </form>
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 hover:bg-red-700"
+            className="bg-slate-400 text-white px-4 py-2 rounded-md mt-4 hover:bg-red-700"
             onClick={handleAddWord}
           >
             Add Word
