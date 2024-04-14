@@ -77,14 +77,14 @@ const QuizPage = () => {
       const newQuizCount = quizCount + 1;
       setQuizCount(newQuizCount);
       setSelectedOption("");
-    }, 1000);
+    }, 1500);
   };
 
   const getOptionStyle = (option) => {
-    if (selectedOption === option) {
-      if (selectedOption === correctAnswer) {
+    if (selectedOption !== "") {
+      if (option === correctAnswer) {
         return { backgroundColor: "rgb(34 197 94)" };
-      } else {
+      } else if (option === selectedOption) {
         return { backgroundColor: "rgb(220 38 38)" };
       }
     }
@@ -135,6 +135,11 @@ const QuizPage = () => {
                   </div>
                 ))}
               </div>
+              {selectedOption !== "" && selectedOption !== correctAnswer && (
+                <div className="correctAnswer">
+                  The correct answer is: {correctAnswer}
+                </div>
+              )}
             </div>
           </div>
         ) : (
