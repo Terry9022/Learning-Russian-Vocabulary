@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import booksRoute from "./routes/booksRoute.js";
 import vocabularyRoute from "./routes/vocabularyRoute.js";
 import userRoute from "./routes/userRoute.js";
+import emailRoute from "./routes/emailRoute.js";
 import cors from "cors";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
@@ -19,7 +20,6 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-  console.log(req);
   return res.status(234).send("Welcome to MERN");
 });
 

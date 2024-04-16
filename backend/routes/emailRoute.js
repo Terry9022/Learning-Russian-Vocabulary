@@ -1,7 +1,12 @@
-const express = require("express");
-const nodemailer = require("nodemailer");
-const User = require("./models/User");
-const Vocabulary = require("./models/Vocabulary");
+import express from "express";
+import { User } from "../models/userModel.js";
+import { Vocabulary } from "../models/vocabularyModel.js";
+import nodemailer from "nodemailer";
+// import the "dotenv" package
+import dotenv from "dotenv";
+
+// call the config function
+dotenv.config();
 
 const router = express.Router();
 
@@ -9,8 +14,8 @@ const router = express.Router();
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
-    user: "your-email@gmail.com",
-    pass: "your-email-password",
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
@@ -21,7 +26,7 @@ router.get("/send-daily-words", async (req, res) => {
 
     // Iterate over each user
     for (const user of users) {
-      // Get a random vocabulary word based on the user's level
+      //Get a random vocabulary word based on the user's level
       const vocabularyWord = await Vocabulary.aggregate([
         { $match: { difficulty_level: user.level } },
         { $sample: { size: 1 } },
@@ -29,7 +34,7 @@ router.get("/send-daily-words", async (req, res) => {
 
       // Compose the email message
       const mailOptions = {
-        from: "your-email@gmail.com",
+        from: process.env.EMAIL_USER,
         to: user.email,
         subject: "Daily Russian Vocabulary",
         html: `
@@ -53,4 +58,4 @@ router.get("/send-daily-words", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
