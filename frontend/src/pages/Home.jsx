@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { GiCat } from "react-icons/gi";
 import { useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config.js";
 
 const Home = () => {
   const navigateTo = useNavigate();
@@ -20,7 +21,7 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5555/api/user/create", {
+      await axios.post(`${API_URL}/api/user/create`, {
         name,
         email,
         password,

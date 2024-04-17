@@ -5,6 +5,7 @@ import VocabularyCard from "../components/VocabularyCard";
 import Header from "../components/Header";
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { API_URL } from "../config.js";
 
 // const vocabulary = {
 //   russian_word: "вы",
@@ -28,7 +29,7 @@ const ReviewPage = () => {
 
   const chooseReview = async (value) => {
     const response = await axios.get(
-      `http://localhost:5555/api/user/${localStorage.getItem("userId")}`
+      `${API_URL}/api/user/${localStorage.getItem("userId")}`
     );
     var user_vocab = response.data.vocabulary_received;
     var level_vocab = [];
@@ -59,9 +60,7 @@ const ReviewPage = () => {
       setVocabularies(level_vocab);
     } else {
       //all selected
-      const response = await axios.get(
-        `http://localhost:5555/api/user/${userId}`
-      );
+      const response = await axios.get(`${API_URL}/api/user/${userId}`);
       const userData = response.data;
       setVocabularies(userData.vocabulary_received);
     }
@@ -72,9 +71,7 @@ const ReviewPage = () => {
       try {
         const userId = localStorage.getItem("userId");
 
-        const response = await axios.get(
-          `http://localhost:5555/api/user/${userId}`
-        );
+        const response = await axios.get(`${API_URL}/api/user/${userId}`);
         const userData = response.data;
         console.log(userData);
         setUser(userData);

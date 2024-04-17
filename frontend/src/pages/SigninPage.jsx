@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { API_URL } from "../config.js";
 
 const SigninPage = () => {
   const navigateTo = useNavigate();
@@ -12,7 +13,7 @@ const SigninPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5555/api/login", {
+      const response = await axios.post(`${API_URL}/api/login`, {
         email,
         password,
       });

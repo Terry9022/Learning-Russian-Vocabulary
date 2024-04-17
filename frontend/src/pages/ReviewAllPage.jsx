@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import Header from "../components/Header";
+import { API_URL } from "../config.js";
 
 // const vocabulary = {
 //   russian_word: "вы",
@@ -49,7 +50,7 @@ const ReviewAllPage = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5555/api/vocabulary")
+      .get(`${API_URL}/api/vocabulary`)
       .then((response) => {
         setVocabularies(response.data.data);
         setLoading(false);

@@ -2,6 +2,7 @@ import { FaPen } from "react-icons/fa";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config.js";
 
 const QuizPage = () => {
   const [vocabularies, setVocabularies] = useState([]);
@@ -16,9 +17,7 @@ const QuizPage = () => {
     const fetchUserProfile = async () => {
       try {
         const userId = localStorage.getItem("userId");
-        const response = await axios.get(
-          `http://localhost:5555/api/user/${userId}`
-        );
+        const response = await axios.get(`${API_URL}/api/user/${userId}`);
         const userData = response.data;
         setVocabularies(userData.vocabulary_received);
       } catch (error) {

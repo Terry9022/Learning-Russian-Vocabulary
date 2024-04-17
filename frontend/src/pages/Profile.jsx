@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header";
+import { API_URL } from "../config.js";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -13,9 +14,7 @@ function Profile() {
       try {
         const userId = localStorage.getItem("userId");
 
-        const response = await axios.get(
-          `http://localhost:5555/api/user/${userId}`
-        );
+        const response = await axios.get(`${API_URL}/api/user/${userId}`);
         const userData = response.data;
         console.log(userData);
         setUser(userData);
@@ -35,7 +34,7 @@ function Profile() {
     e.preventDefault();
     try {
       const userId = localStorage.getItem("userId");
-      await axios.put(`http://localhost:5555/api/user/update/${userId}`, {
+      await axios.put(`${API_URL}/api/user/update/${userId}`, {
         name,
         email,
         level,
@@ -51,7 +50,7 @@ function Profile() {
     try {
       const userId = localStorage.getItem("userId");
       const response = await axios.get(
-        `http://localhost:5555/api/user/add_word/${userId}`
+        `${API_URL}/api/user/add_word/${userId}`
       );
       const updatedUser = response.data;
       console.log(updatedUser);
