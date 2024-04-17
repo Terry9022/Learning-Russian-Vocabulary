@@ -1,5 +1,5 @@
 import express, { response } from "express";
-import { PORT, mongoDBURL } from "./config.js";
+import { PORT } from "./config.js";
 import mongoose from "mongoose";
 import booksRoute from "./routes/booksRoute.js";
 import vocabularyRoute from "./routes/vocabularyRoute.js";
@@ -9,6 +9,11 @@ import cors from "cors";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { User } from "./models/userModel.js";
+// import the "dotenv" package
+import dotenv from "dotenv";
+
+// call the config function
+dotenv.config();
 
 const app = express();
 
@@ -60,7 +65,7 @@ function authenticateToken(req, res, next) {
 }
 
 mongoose
-  .connect(mongoDBURL)
+  .connect(process.env.mongoDBURL)
   .then(() => {
     console.log("App connected to database");
     app.listen(PORT, () => {
