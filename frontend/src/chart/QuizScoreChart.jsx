@@ -56,6 +56,10 @@ const QuizScoreChart = () => {
       },
       tooltip: {
         callbacks: {
+          title: (context) => {
+            const date = context[0].label;
+            return date.slice(0, 12);
+          },
           label: (context) => `Score: ${context.parsed.y}%`,
         },
       },

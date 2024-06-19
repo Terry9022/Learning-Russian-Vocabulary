@@ -51,6 +51,15 @@ const ProfileWithVisualization = () => {
               className="text-base font-normal text-gray-700 rounded h-10 w-80 box-border block border-2 border-solid border-gray-300 px-2"
             />
           </div>
+          <button
+            type="submit"
+            className="bg-slate-400 text-white px-4 py-2 rounded-md hover:bg-red-700 "
+          >
+            Update
+          </button>
+          <button className="bg-slate-400 text-white px-4 py-2 rounded-md mt-4 hover:bg-red-700 ">
+            Add Word
+          </button>
         </div>
         <div className=" mt-8">
           <h2 className="text-2xl font-bold mb-2 text-center">
